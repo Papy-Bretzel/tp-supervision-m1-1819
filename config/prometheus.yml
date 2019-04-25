@@ -40,8 +40,15 @@ scrape_configs:
           - 'docker-01.docker.radiobretzel.org:9100'
           - 'proxy-01.public.radiobretzel.org:9100'
 
-  - job_name: 'databases'
+  - job_name: 'nginx'
     static_configs:
       - targets:
-          - 'gitlab.dmz.radiobretzel.org:9100'
-          - 'chat.dmz.radiobretzel.org:9100'
+          - 'gitlab.dmz.radiobretzel.org:9113'
+          - 'chat.dmz.radiobretzel.org:9113'
+          - 'www.dmz.radiobretzel.org:9113'
+          - 'proxy-01.public.radiobretzel.org:9113'
+
+  - job_name: 'mysql'
+    static_configs:
+      - targets:
+          - 'gitlab.dmz.radiobretzel.org:9104'
