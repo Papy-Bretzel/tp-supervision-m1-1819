@@ -36,7 +36,7 @@ scrape_configs:
           - 'ns1.dmz.radiobretzel.org:9100'
           - 'gitlab.dmz.radiobretzel.org:9100'
           - 'chat.dmz.radiobretzel.org:9100'
-          - 'www.radiobretzel.org:9100'
+          - 'www.dmz.radiobretzel.org:9100'
           - 'docker-01.docker.radiobretzel.org:9100'
           - 'proxy-01.public.radiobretzel.org:9100'
 
