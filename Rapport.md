@@ -139,11 +139,14 @@ Une alerte sera levée dès lors que l'un des services énoncés plus haut sera 
 
 #### Seuils liés à surveillance du réseau
 
-La détermination des seuils d'alertes liés au monitoring du réseau est plus délicate, car si il peut être intéressant de faire des stress tests de l'architecture pour en tester la résistance à la charge, la taille du projet et le nombre de visite par an ne justifie pas de politique d'alerte particulière. Comme pour
+La détermination des seuils d'alertes liés au monitoring du réseau est plus délicate, car s'il peut être intéressant de faire des stress tests de l'architecture pour en tester la résistance à la charge, la taille du projet et le nombre de visites par an ne justifient pas de politique d'alerte particulière.
 
 #### Implémentation de l'alerting
 
-Dans les faits, l'alerting est particulièrement 
+Dans les faits, l'alerting est assez simple à mettre en place, mais ne comporte que très peu de fonctionnalités. Les alertes se programment **par graphique**, à l'aide d'une requête à Prometheus, sur laquelle on fixe des conditions. Si ces conditions ne sont pas respectées, la notification est déclenchée.  
+
+Le principal point négatif de ce système est **l'impossibilité de programmer plusieurs alertes par graphique**. Par exemple, si on souhaite placer un warning à 85% de charge CPU et une alerte à 95%, il faut deux graphiques. C'est très peu pratique et efficace.  
+Un autre problème lié à ce système est à noter : **il est nécessaire d'écrire une requête sans variables liées au dashboard**, ce qui est logique mais embêtant car cela oblige à réécrire la requête du graphique pour enlever ces variables et à fixer en dur les hôtes concernés par l'alerte.
 
 ## Visualisation des données
 
