@@ -33,6 +33,7 @@ scrape_configs:
       - targets:
           - 'console.admin.radiobretzel.org:9100'
           - 'jobmaster.admin.radiobretzel.org:9100'
+          - 'fw.admin.radiobretzel.org:9100'
           - 'ns1.dmz.radiobretzel.org:9100'
           - 'www.dmz.radiobretzel.org:9100'
           - 'docker-01.docker.radiobretzel.org:9100'
