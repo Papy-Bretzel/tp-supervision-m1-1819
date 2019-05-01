@@ -73,6 +73,8 @@ Cependant, il ne permet pas directement de traiter les alertes chaînées et la 
 
 - **Grafana**, l'outil de visualisation et dashboarding via interface web. Son principe est simple, il agrège des données via différents **data sources**, et les mets en forme via différents types de graphiques définis par l'utilisateur. Nous utiliserons un plugin officiel de data source pour Grafana qui utilise `PromQL` pour récupérer les métriques que l'on souhaite mettre en forme sur un serveur `prometheus`. Le site officiel [grafana.com](https://grafana.com/dashboards) recense des centaines de dashboards créés par la communauté pour la plupart des systèmes, applications, et exporters officiels ou non-officiels.
 
+![Diagramme Prometheus/Grafana](diapo/img/prom_grafana_system.jpg "Diagramme Prometheus/Grafana")
+
 ## Implémentation de la solution de surveillance
 
 ### Choix des métriques
@@ -103,14 +105,14 @@ Les métriques systèmes communes seront collectées par le service `node_export
 Un de ces flags correspond à la surveillance des différents services de  `systemd`, et nous permettra de faire un monitoring basique des différents services cités plus haut (`sshd`, `nginx`, `named`, etc...)
 
 Pour monitorer nos services de manière plus précise, nous avons utilisé des exporters spécifiques :
-* `nginx_exporter` pour les serveurs web et proxy, rendant compte du nombre de requêtes et de connexions actives.
-* `postgresql_exporter` pour les services de base de données présents sur gitlab.dmz.radiobretzel.org et chat.dmz.radiobretzel.org.
+
+- `nginx_exporter` pour les serveurs web et proxy, rendant compte du nombre de requêtes et de connexions actives.
+- `postgresql_exporter` pour les services de base de données présents sur gitlab.dmz.radiobretzel.org et chat.dmz.radiobretzel.org.
 
 Il est également possible de monitorer les jobs `cron` en utilisant une autre fonctionnalité de Prometheus qui est la _Push Gateway_. Elle constitue un intermédiaire entre les outils de collectes et Prometheus. Par exemple, nous exécutons un script, nous envoyons l'output vers la Push Gateway afin de rendre son contenu disponible au serveur prometheus. Contrairement au node_exporter, la Push Gateway est entièrement passive, et ne sert que de tampon dans des cas où les fonctionnalités des exporters sont limitées, comme par exemple dans la surveillance applicative.  
 Cependant, nous n'avons pas eu le temps de mettre cette fonctionalité en place via prometheus, à savoir le déploiement d'une Push Gateway. Nous utilisons à la place un [module Ansible](https://docs.ansible.com/ansible/latest/plugins/callback/mail.html) permettant d'envoyer un mail avec un résumé du playbook en cas d'erreur.
 
 Pour finir, nous utiliserons un plugin Prometheus Exporter d'OpnSense qui permet de simuler un node_exporter sur OpnSense. Ce plugin nous renseigne sur l'état des interfaces, et du système en général, mais il lui manque quelques métriques qui nous auraient intéressées, comme l'état du serveur VPN  OpenVPN ou des passerelles IPSec.
-
 
 ### Alerting
 
@@ -135,7 +137,6 @@ Si certaines métriques sont systématiquement surveillées, leurs valeurs seuil
 
 Une alerte sera levée dès lors que l'un des services énoncés plus haut sera en erreur, ou arrêté. Les métriques liées au nombre de requêtes sont intéressantes mais ne constituent pas un facteur alarmant pour l'intégrité des données. Cependant, un grand nombre de services sont critiques, comme évidemment `gitlab`, mais aussi le service de DNS interne assuré par `named` sur ns1.dmz.radiobretzel.org. Sans DNS, l'intégralité de la plateforme et le processus de sauvegarde son mis en échec.
 
-
 #### Seuils liés à surveillance du réseau
 
 La détermination des seuils d'alertes liés au monitoring du réseau est plus délicate, car si il peut être intéressant de faire des stress tests de l'architecture pour en tester la resitance à la charge, la taille du projet et le nombre de visite par an ne justifie pas de politique d'alerte particulière. Comme pour
@@ -146,9 +147,15 @@ Dans les faits, l'alerting
 
 ## Visualisation des données
 
-Dans Grafana, les dashboards mettent en relation des données de différentes _Data Sources_, et les représentent graphiquement en fonction de certaines variables que nous définissons à l'avance. Le travail lié à la confection d'un dashboard peut rapidement devenri (très) laborieux, et la maîtrise du langage de requête de Prometheus n'est pas des plus intuitifs au premier abord, et nécessite quelques heures de pratiques avant de pouvoir être plus ou moins confortablement utilisé. 
+Dans Grafana, les dashboards mettent en relation des données de différentes _Data Sources_, et les représentent graphiquement en fonction de certaines variables que nous définissons à l'avance. Le travail lié à la confection d'un dashboard peut rapidement devenri (très) laborieux, et la maîtrise du langage de requête de Prometheus n'est pas des plus intuitifs au premier abord, et nécessite quelques heures de pratiques avant de pouvoir être plus ou moins confortablement utilisé.
 
 ### Exemples de dashboards
+
+![Dashboard système](diapo/img/explosion.png "Dashboard système")
+
+![Dashboard PostgreSQL](diapo/img/postgres.png "Dashboard PostgreSQL")
+
+![Dashboard NGINX](diapo/img/nginx.png "Dashboard NGINX")
 
 ## Limites observées et expérience personnelle
 
