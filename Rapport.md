@@ -16,7 +16,7 @@ Dans ce document, nous décrirons dans un premier temps nos plateformes de déve
 L'infrastructure que nous avons choisi d'utiliser pour cet exercice est celle de la plateforme de développement de [Radio Bretzel](https://www.radiobretzel.org), un projet libre d'application de webradio collaboratives.
 
 Pour commencer, toute la plateforme est accessible depuis internet via le nom de domaine **radiobretzel.org** ([lien whois](https://www.whois.com/whois/radiobretzel.org)).
-Si la disponibilité de sa plateforme est appréciable, **l'essentiel du projet Radio Bretzel repose sur l'intégrité de son code et de sa documentation.** Ces éléments, ainsi qu'une partie de la configuration de la plateforme est versionné et géré à travers une instance Gitlab, accessible via l'URL <https://source.radiobretzel.org.> Ce service se constitue de l'application `gitlab`, son serveur de base de données `postgresql`, et il est placé derrière un reverse proxy qui s'occupe de la terminaison SSL. Également, Gitlab fait appel à un `gitlab-runner` comme outil de CI CD, qui permet d'automatiser une partie du cylcle de vie de l'application `radiobretzel`. Il fournit également le registre docker pour les projets qu'il héberge.
+Si la disponibilité de sa plateforme est appréciable, **l'essentiel du projet Radio Bretzel repose sur l'intégrité de son code et de sa documentation.** Ces éléments, ainsi qu'une partie de la configuration de la plateforme est versionné et géré à travers une instance Gitlab, accessible via l'URL <https://source.radiobretzel.org.> Ce service se constitue de l'application `gitlab`, son serveur de base de données `postgresql`, et il est placé derrière un reverse proxy qui s'occupe de la terminaison SSL. Également, Gitlab fait appel à un `gitlab-runner` comme outil de CI CD, qui permet d'automatiser une partie du cycle de vie de l'application `radiobretzel`. Il fournit également le registre docker pour les projets qu'il héberge.
 
 Gitlab est accompagné d'une instance `mattermost` pour qui il sert de serveur d'authentification, et dans lequel il publie des messages relatifs aux pipelines de CI-CD et à la création d'issues. Elle est accessible via <https://chat.radiobretzel.org> et se constitue du service `mattermost`, de sa base de données `postgresql`, et il est lui aussi placé derrière un reverse proxy.
 
@@ -110,7 +110,7 @@ Pour monitorer nos services de manière plus précise, nous avons utilisé des e
 - `postgresql_exporter` pour les services de base de données présents sur gitlab.dmz.radiobretzel.org et chat.dmz.radiobretzel.org.
 
 Il est également possible de monitorer les jobs `cron` en utilisant une autre fonctionnalité de Prometheus qui est la _Push Gateway_. Elle constitue un intermédiaire entre les outils de collectes et Prometheus. Par exemple, nous exécutons un script, nous envoyons l'output vers la Push Gateway afin de rendre son contenu disponible au serveur prometheus. Contrairement au node_exporter, la Push Gateway est entièrement passive, et ne sert que de tampon dans des cas où les fonctionnalités des exporters sont limitées, comme par exemple dans la surveillance applicative.  
-Cependant, nous n'avons pas eu le temps de mettre cette fonctionalité en place via prometheus, à savoir le déploiement d'une Push Gateway. Nous utilisons à la place un [module Ansible](https://docs.ansible.com/ansible/latest/plugins/callback/mail.html) permettant d'envoyer un mail avec un résumé du playbook en cas d'erreur.
+Cependant, nous n'avons pas eu le temps de mettre cette fonctionnalité en place via prometheus, à savoir le déploiement d'une Push Gateway. Nous utilisons à la place un [module Ansible](https://docs.ansible.com/ansible/latest/plugins/callback/mail.html) permettant d'envoyer un mail avec un résumé du playbook en cas d'erreur.
 
 Pour finir, nous utiliserons un plugin Prometheus Exporter d'OpnSense qui permet de simuler un node_exporter sur OpnSense. Ce plugin nous renseigne sur l'état des interfaces, et du système en général, mais il lui manque quelques métriques qui nous auraient intéressées, comme l'état du serveur VPN  OpenVPN ou des passerelles IPSec.
 
@@ -139,15 +139,15 @@ Une alerte sera levée dès lors que l'un des services énoncés plus haut sera 
 
 #### Seuils liés à surveillance du réseau
 
-La détermination des seuils d'alertes liés au monitoring du réseau est plus délicate, car si il peut être intéressant de faire des stress tests de l'architecture pour en tester la resitance à la charge, la taille du projet et le nombre de visite par an ne justifie pas de politique d'alerte particulière. Comme pour
+La détermination des seuils d'alertes liés au monitoring du réseau est plus délicate, car si il peut être intéressant de faire des stress tests de l'architecture pour en tester la résistance à la charge, la taille du projet et le nombre de visite par an ne justifie pas de politique d'alerte particulière. Comme pour
 
 #### Implémentation de l'alerting
 
-Dans les faits, l'alerting
+Dans les faits, l'alerting est particulièrement 
 
 ## Visualisation des données
 
-Dans Grafana, les dashboards mettent en relation des données de différentes _Data Sources_, et les représentent graphiquement en fonction de certaines variables que nous définissons à l'avance. Le travail lié à la confection d'un dashboard peut rapidement devenri (très) laborieux, et la maîtrise du langage de requête de Prometheus n'est pas des plus intuitifs au premier abord, et nécessite quelques heures de pratiques avant de pouvoir être plus ou moins confortablement utilisé.
+Dans Grafana, les dashboards mettent en relation des données de différentes _Data Sources_, et les représentent graphiquement en fonction de certaines variables que nous définissons à l'avance. Le travail lié à la confection d'un dashboard peut rapidement devenir (très) laborieux, et la maîtrise du langage de requête de Prometheus n'est pas des plus intuitifs au premier abord, et nécessite quelques heures de pratiques avant de pouvoir être plus ou moins confortablement utilisé.
 
 ### Exemples de dashboards
 
