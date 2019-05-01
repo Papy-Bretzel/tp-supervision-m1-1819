@@ -16,6 +16,14 @@
     .text-shadow {
       text-shadow: 0 0 10px black !important;
     }
+
+    .container {
+      display: flex;
+    }
+
+    .col {
+      flex: 1;
+    }
   </style>
 </head>
 
@@ -35,18 +43,56 @@
           <img src="img/archi_radiobretzel.png" />
         </section>
         <section>
-          <h1>Actifs critiques</h1>
-          <ul>
-            <li>Pare-feu</li>
-            <li>DNS</li>
-            <li>Serveurs Web</li>
-            <li>Gitlab</li>
-          </ul>
+          <h2>Actifs</h2>
+          <br>
+          <div class="container">
+            <div class="col">
+              <h3>Critiques</h3>
+              <ul>
+                <li>Pare-feu</li>
+                <li>DNS</li>
+                <li>Serveurs Web</li>
+
+              </ul>
+            </div>
+            <br>
+            <div class="col">
+              <h3>Importants</h3>
+              <ul>
+                <li>Gitlab</li>
+                <li>Hôte Docker</li>
+                <li>Mattermost</li>
+              </ul>
+            </div>
+          </div>
         </section>
       </section>
       <section>
         <section data-background="https://media.giphy.com/media/3og0IExSrnfW2kUaaI/giphy.gif">
           <h1 class="text-shadow">La solution Grafana</h1>
+        </section>
+        <section>
+          <h2>Sources de données</h2>
+          <br>
+          <div class="container">
+            <div class="col">
+              <h3>Utilisée</h3>
+              <ul>
+                <li>Prometheus</li>
+              </ul>
+            </div>
+            <br>
+            <div class="col">
+              <h3>Disponibles</h3>
+              <ul>
+                <li>Azure monitor</li>
+                <li>Cloud Watch</li>
+                <li>Elastic Search</li>
+                <li>InfluxDB</li>
+                <li>Etc.</li>
+              </ul>
+            </div>
+          </div>
         </section>
       </section>
       <section>
