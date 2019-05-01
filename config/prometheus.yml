@@ -38,6 +38,11 @@ scrape_configs:
           - 'docker-01.docker.radiobretzel.org:9100'
           - 'proxy-01.public.radiobretzel.org:9100'
 
+  - job_name: 'firewall'
+    static_configs:
+      - targets:
+          - '10.12.10.254:9100'
+
   - job_name: 'webservers'
     static_configs:
       - targets:
