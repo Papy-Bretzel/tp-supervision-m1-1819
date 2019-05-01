@@ -72,6 +72,11 @@ Ces réseaux comprennent un ensemble de machines virtuelles :
 - **chat.dmz.radiobretzel.org** : Instance Mattermost câblée via oAuth à Gitlab. Installée via le gitlab omnibus installer. (<https://chat.radiobretzel.org)>
 - **proxy-01.public.radiobretzel.org** : HTTP Reverse Proxy utilisant nginx. S'occupe de la terminaison SSL pour les services accessibles depuis le web (Let's Encrypt)
 
+
+Schéma d'architecture Globale de Radio Bretzel
+![Schéma d'architecture Globale de Radio Bretzel](ScreenShots/TP Supervision - Archi globale.png)
+
+
 ## Plateforme de surveillance <a name="2"></a>
 
 ### Présentation technique <a name="2-a"></a>
