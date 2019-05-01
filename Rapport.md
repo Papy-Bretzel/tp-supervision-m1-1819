@@ -47,7 +47,6 @@ Ces réseaux comprennent un ensemble de machines virtuelles :
 - **chat.dmz.radiobretzel.org** : Instance Mattermost câblée via oAuth à Gitlab. Installée via le gitlab omnibus installer. (<https://chat.radiobretzel.org)>
 - **proxy-01.public.radiobretzel.org** : HTTP Reverse Proxy utilisant nginx. S'occupe de la terminaison SSL pour les services accessibles depuis le web (Let's Encrypt)
 
-
 ## Plateforme de surveillance
 
 ### Présentation technique
@@ -68,11 +67,9 @@ Pour ce TP, nous avons voulu essayer la stack `Prometheus / Grafana`. Elle se co
 
 - Les "**exporters**" sont des agents de collecte sur les hôtes à surveiller. Ces agents sont spécifiques au types de métriques recueillies. Par exemple, les données relatives au système de la machine seront traités pas le module officiel fourni par Prometheus, `node_exporter`. Cependant, d'autres modules non-officiels existent pour des applications, par exemple `mysqld_exporter` pour des métriques relatives à une instance `mysql`. Une fois ces métriques collectées, elles sont exposées via HTTP (ou HTTPS) sur  [un port "réservé"](https://github.com/prometheus/prometheus/wiki/Default-port-allocations) en fonction du type d'exporter, afin d'être lue par le serveur de supervision.
 
-
 - **Prometheus Server**, l'outil de supervision en lui même. Son rôle est d'agréger les données fournies par les exporters renseignés dans sa configuration. Il intègre un service d'alerte, qui peut aussi être externalisé, et offre une API pour d'éventuels outils de visualisation.  
 Il fournit  également un interpréteur de son propre langage de requête dynamique, `PromQL` et des opérations de traitements sont également possibles afin de générer des métriques dynamiques. (Ex : On récupère différentes informations sur la RAM, et on  calcule à la volée un pourcentage d'utilisation pour faciliter la lisibilité).  
 Cependant, il ne permet pas directement de traiter les alertes chaînées et la gestion des tickets, comme pourrait le faire un Zabbix. Ces fonctionnalités peuvent néanmoins être externalisées facilement via l'utilisation du plugins, assez répandus en vue de la popularité croissante de cette solution.
-
 
 - **Grafana**, l'outil de visualisation et dashboarding via interface web. Son principe est simple, il agrège des données via différents **data sources**, et les mets en forme via différents types de graphiques définis par l'utilisateur. Nous utiliserons un plugin officiel de data source pour Grafana qui utilise `PromQL` pour récupérer les métriques que l'on souhaite mettre en forme sur un serveur `prometheus`. Le site officiel [grafana.com](https://grafana.com/dashboards) recense des centaines de dashboards créés par la communauté pour la plupart des systèmes, applications, et exporters officiels ou non-officiels.
 
@@ -123,8 +120,8 @@ Si certaines métriques sont systématiquement surveillées, leurs valeurs seuil
 
 Le processus de sauvegarde est assuré par un playbook Ansible joué chaque nuit. Il récupère les éléments de configuration et de données des différents services de la plateforme, et en fait une archive, qu'il garde en local et qu'il exporte sur un troisième noeud, externe à la plateforme. Ici, on utilisera la métrique binaire "succès / échec" et on lèvera une alerte en cas d'échec.
 
+#### Métriques liées aux services
 
-#### Métriques liées aux services :
 Une alerte sera levée dès lors que l'un des services énoncés plus haut sera en erreur, ou arrêté. Les métriques liées au nombre de requêtes sont intéressantes mais ne constituent pas un facteur alarmant pour l'intégrité des données.
 
 ### Quelques dashboards
