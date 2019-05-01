@@ -36,46 +36,33 @@
 <body>
   <div class="reveal">
     <div class="slides">
+
       <section></section>
+
+
       <section data-background="https://media.giphy.com/media/A8UihDrG2T9a8/giphy.gif">
         <h1 class="text-shadow"><i class="fas fa-chart-bar"></i>GRAFANA</h1>
         <h2 class="text-shadow">Révolution ou mascarade ?</h2>
       </section>
+
+
       <section>
-        <section data-background="https://media.giphy.com/media/DYCqww80XOydO/giphy.gif">
-          <h1 class="text-shadow">Infrastructure <br> à superviser</h1>
-        </section>
-        <section>
-          <img src="img/archi_radiobretzel.png" />
-        </section>
-        <section>
-          <h2><i class="fas fa-heartbeat"></i>Actifs</h2>
-          <br>
-          <div class="container">
-            <div class="col">
-              <h3>Critiques</h3>
-              <p style="text-align: left;"><i class="fas fa-fire"></i>Pare-feu</p>
-              <p style="text-align: left;"><i class="fas fa-address-book"></i>DNS</p>
-              <p style="text-align: left;"><i class="fas fa-server"></i>Serveurs Web</p>
-            </div>
-            <div class="col">
-              <h3>Importants</h3>
-              <p style="text-align: left;"><i class="fab fa-gitlab"></i>Gitlab</p>
-              <p style="text-align: left;"><i class="fab fa-docker"></i>Hôte Docker</p>
-              <p style="text-align: left;"><i class="fas fa-comments"></i>Mattermost</p>
-            </div>
-          </div>
-        </section>
-      </section>
-      <section>
+
         <section data-background="https://media.giphy.com/media/3og0IExSrnfW2kUaaI/giphy.gif">
           <h1 class="text-shadow">La solution Grafana</h1>
         </section>
+
         <section>
           <p style="text-align: left;"><i class="fas fa-file-code"></i>Libre</p>
           <p style="text-align: left;"><i class="fab fa-linux"></i>Multi-plateforme</p>
+          <p style="text-align: left;"><i class="fas fa-drafting-compass"></i>Customisable</p>
           <p style="text-align: left;"><i class="fab fa-github"></i>29k ★ (2x plus que Kibana)</p>
         </section>
+
+        <section>
+          <img style="border: unset; box-shadow: unset;" src="img/prom_grafana_system.jpg" />
+        </section>
+
         <section>
           <h2><i class="fas fa-stream"></i>Sources de données</h2>
           <br>
@@ -94,6 +81,7 @@
             </div>
           </div>
         </section>
+
         <section>
           <h2><i class="fas fa-exclamation-triangle"></i>Notifications d'alerte</h2>
           <br>
@@ -112,19 +100,23 @@
             </div>
           </div>
         </section>
+
         <section>
           <h3><i class="fas fa-desktop"></i>Tableau de bord</h3>
           <img src="img/explosion.png" />
         </section>
+
         <section>
           <h3><i class="fas fa-question-circle"></i>Création d'une requête</h3>
           <img src="img/creation_graphique.png" />
         </section>
+
         <section>
           <h4><i class="fas fa-microchip"></i>Requête d'utilisation du processeur</h4>
           <blockquote style="word-break: break-all; width: unset;">100 - (avg by(instance)
             (irate(node_cpu_seconds_total{mode="idle",instance=~"$instances"}[$__range])) * 100)</blockquote>
         </section>
+
         <section>
           <h4><i class="fas fa-memory"></i>Requête d'utilisation de la RAM</h4>
           <blockquote style="word-break: break-all; width: unset;">100 * (1 -
@@ -133,6 +125,7 @@
             avg_over_time(node_memory_Buffers_bytes{instance=~"$instances"}[10m])) /
             avg_over_time(node_memory_MemTotal_bytes{instance=~"$instances"}[10m]))
         </section>
+
         <section data-background="https://thumbs.gfycat.com/ZanySoulfulGourami-size_restricted.gif">
           <h2 class="text-shadow">PromQL</h2>
           <br>
@@ -142,24 +135,68 @@
           <br>
           <h3 class="text-shadow">Sah quel plaisir</h3>
         </section>
+
         <section>
           <h3><i class="fas fa-eye"></i>Choix d'un type de visualisation</h3>
           <img src="img/graphs.png" />
         </section>
+
         <section>
           <h3><i class="fas fa-exclamation-circle"></i>Paramétrage d'une alerte</h3>
           <img src="img/alerte.png" />
         </section>
+
       </section>
+
+
       <section>
+
+        <section data-background="https://media.giphy.com/media/DYCqww80XOydO/giphy.gif">
+          <h1 class="text-shadow">Infrastructure <br> à superviser</h1>
+        </section>
+
+        <section>
+          <img src="img/archi_radiobretzel.png" />
+        </section>
+
+        <section>
+          <h2><i class="fas fa-heartbeat"></i>Actifs</h2>
+          <br>
+          <div class="container">
+            <div class="col">
+              <h3>Critiques</h3>
+              <p style="text-align: left;"><i class="fas fa-fire"></i>Pare-feu</p>
+              <p style="text-align: left;"><i class="fas fa-address-book"></i>DNS</p>
+              <p style="text-align: left;"><i class="fas fa-server"></i>Serveurs Web</p>
+              <p style="text-align: left;"><i class="fab fa-gitlab"></i>Gitlab</p>
+              <p style="text-align: left;"><i class="fas fa-save"></i>Sauvegarde</p>
+            </div>
+            <div class="col">
+              <h3>Importants</h3>
+              <p style="text-align: left;"><i class="fab fa-docker"></i>Hôte Docker</p>
+              <p style="text-align: left;"><i class="fas fa-comments"></i>Mattermost</p>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+
+      <section>
+
         <section data-background="https://media.giphy.com/media/26gYPjuK6O0H63GyQ/giphy.gif">
           <h1 class="text-shadow"><i class="fas fa-surprise"></i>Démonstration</h1>
         </section>
+
       </section>
+
+
       <section>
+
         <section data-background="https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif">
           <h1 class="text-shadow"><i class="far fa-star"></i>Avis</h1>
         </section>
+
       </section>
     </div>
   </div>
