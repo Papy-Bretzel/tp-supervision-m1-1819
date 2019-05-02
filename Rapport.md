@@ -33,7 +33,6 @@ Dans ce document, nous décrirons dans un premier temps nos plateformes de déve
         1. [Victor MIGNOT](#5-b-1)
         2. [Clément RUIZ](#5-b-2)
 
-
 ## Infrastructure monitorée <a name="1"></a>
 
 ### Présentation de Radio Bretzel <a name="1-a"></a>
@@ -41,7 +40,7 @@ Dans ce document, nous décrirons dans un premier temps nos plateformes de déve
 L'infrastructure que nous avons choisi d'utiliser pour cet exercice est celle de la plateforme de développement de [Radio Bretzel](https://www.radiobretzel.org), un projet libre d'application de webradios collaboratives.
 
 Pour commencer, toute la plateforme est accessible depuis internet *via* le nom de domaine **radiobretzel.org** ([lien whois](https://www.whois.com/whois/radiobretzel.org)).  
-Si la disponibilité de sa plateforme est appréciable, **l'essentiel du projet Radio Bretzel repose sur l'intégrité de son code et de sa documentation.** Ces éléments, ainsi qu'une partie de la configuration de la plateforme sont versionnés et gérés à travers une instance Gitlab, accessible via l'URL https://source.radiobretzel.org. Ce service est composé de l'application `gitlab`, de son serveur de base de données `postgresql`, et il est placé derrière un reverse proxy qui s'occupe de la terminaison SSL. Aussi, Gitlab fait appel à un `gitlab-runner` comme outil de CI/CD, qui permet d'automatiser une partie du cycle de vie de l'application `radiobretzel`. Il fournit également le registre docker pour les projets qu'il héberge.
+Si la disponibilité de sa plateforme est appréciable, **l'essentiel du projet Radio Bretzel repose sur l'intégrité de son code et de sa documentation.** Ces éléments, ainsi qu'une partie de la configuration de la plateforme sont versionnés et gérés à travers une instance Gitlab, accessible via l'URL <https://source.radiobretzel.org>. Ce service est composé de l'application `gitlab`, de son serveur de base de données `postgresql`, et il est placé derrière un reverse proxy qui s'occupe de la terminaison SSL. Aussi, Gitlab fait appel à un `gitlab-runner` comme outil de CI/CD, qui permet d'automatiser une partie du cycle de vie de l'application `radiobretzel`. Il fournit également le registre docker pour les projets qu'il héberge.
 
 Gitlab est accompagné d'une instance `mattermost` pour qui il sert de serveur d'authentification, et dans lequel il publie des messages relatifs aux pipelines de CI/CD et à la création d'*issues*. Elle est accessible via <https://chat.radiobretzel.org> et se constitue du service `mattermost`, de sa base de données `postgresql` ; il est lui aussi placé derrière le reverse proxy.
 
@@ -72,7 +71,7 @@ Ces réseaux comprennent un ensemble de machines virtuelles :
 - **chat.dmz.radiobretzel.org** : Instance Mattermost câblée via oAuth à Gitlab (installée via le gitlab omnibus). (<https://chat.radiobretzel.org)>
 - **proxy-01.public.radiobretzel.org** : HTTP Reverse Proxy utilisant nginx. S'occupe de la terminaison SSL pour les services accessibles depuis le web (Let's Encrypt)
 
-![Schéma d'architecture globale de Radio Bretzel](ScreenShots/archi_globale_radiobretzel.png "Schéma d'architecture globale de Radio Bretzel disponible dans ce répository, dans le dossier 'ScreenShots' sour le nom _archi_globale_radiobretzel.png")
+![Schéma d'architecture globale de Radio Bretzel](ScreenShots/archi_globale_radiobretzel.png "Schéma d'architecture globale de Radio Bretzel disponible dans ce repository, dans le dossier 'ScreenShots' sour le nom _archi_globale_radiobretzel.png")
 
 ## Plateforme de surveillance <a name="2"></a>
 
