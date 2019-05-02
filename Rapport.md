@@ -30,8 +30,8 @@ Dans ce document, nous décrirons dans un premier temps nos plateformes de déve
 5. [Limites de la solution et expériences personnelles](#5)
     1. [Limites de la stack Prometheus / Grafana](#5-a)
     2. [Expériences personnelles](#5-b)
-        1. [Victor MIGNOT](#5-a-1)
-        2. [Clément RUIZ](#5-a-2)
+        1. [Victor MIGNOT](#5-b-1)
+        2. [Clément RUIZ](#5-b-2)
 
 
 ## Infrastructure monitorée <a name="1"></a>
@@ -208,11 +208,11 @@ En conclusion, la stack Prometheus / Grafana semble très prometteuse par son de
 
 #### Victor MIGNOT <a name="5-b-1"></a>
 
-Ce projet est pour moi la première fois ou j'ai mis en place et utilisé une solution de supervision. Néanmoins j'ai déjà pu observer d'autres applications concurrentes fonctionner donc j'ai quand même de quoi comparer un minimum. Prometheus et Grafana sont deux outils ayant une popularité clairement assumée depuis un certain temps maintenant, et j'avoue ne pas être convaincu apres le (peu de) temps passé dessus. Entre la difficulté de l'installation et de la maintenance, le langage de requête complètement contre tout ce qui existe et l'orientation clairement DIY des tableaux de bord sans proposer des fonctionnalités élémentaires comme de multiples alertes sur une requête, Prometheus et Grafana sont pour moi des couteaux suisses, ils font tout, mais mal.
+Ce projet est pour moi la première fois où j'ai mis en place et utilisé une solution de supervision. Néanmoins j'ai déjà pu observer d'autres applications concurrentes fonctionner donc j'ai quand même de quoi comparer un minimum. Prometheus et Grafana sont deux outils ayant une popularité clairement assumée depuis un certain temps maintenant, et j'avoue ne pas être convaincu apres le (peu de) temps passé dessus. Entre la difficulté de l'installation et de la maintenance, le langage de requête complètement contre tout ce qui existe et l'orientation clairement DIY des tableaux de bord sans proposer des fonctionnalités élémentaires comme de multiples alertes sur une requête, Prometheus et Grafana sont pour moi des couteaux suisses, ils font tout, mais mal.
 Je comprends l'engouement autour de ces outils libres et "cloud native", qui s'intègrent instantanément dans un système conteneurisé. Mais ces évidentes qualités n'enlèvent en rien les défauts décris précédemment. D'habitude, j'aurais espéré que la solution bénéficie de l'immense soutien de la communauté open-source, mais quand je vois que la fonctionnalité multi-alertes a été demandé il y a 3 ans, cette fois je passe mon chemin.
 
 #### Clément RUIZ  <a name="5-b-2"></a>
 
-J'avais entendu parler de la stack Prometheus / Grafana dans des articles ou des conférences sur le logiciel libre, et j'avais depuis longtemps envie de l'essayer, sans trop la connaître. J'ai donc pu découvrir ses éléments qui plaisaient tant au publics, et sa vision particulière du monitoring, orientée sur le temps plus que sur les hôtes, parfois à mi-chemin avec un SIEM.  
+J'avais entendu parler de la stack Prometheus / Grafana dans des articles ou des conférences sur le logiciel libre, et j'avais depuis longtemps envie de l'essayer, sans trop la connaître. J'ai donc pu découvrir ses éléments qui plaisaient tant au public, et sa vision particulière du monitoring, orientée sur le temps plus que sur les hôtes, parfois à mi-chemin avec un SIEM.  
 Mais comme exprimé plus haut, Victor et moi avons rapidement été rattrapé par l'importante charge de travail liée à l'appropriation de la technologie; En plus du travail de configuration, considérable comme pour la plupart des outils de surveillance traditionnels, l'utilisation d'un langage de requête spécifique, du nombre de services à déployer et gérer (et donc, monitorer !) rend le produit complètement démesuré pour une petite plateforme comme celle de Radio Bretzel. Je pense néanmoins qu'il serait intéressant de tester cette stack sur une architecture containerisée, afin d'en apprécier la modularité et la souplesse.
 Enfin, j'ai cependant pu me confronter à l'exercice de création d'une politique de surveillance, qui lui a été particulièrement enrichissant, d'autant plus que je suis l'administrateur et le chef de projet de Radio Bretzel. Bien que toute la solution soit temporaire, car la plateforme va bientôt être remise à plat, il a été très intéressant de définir les actifs du projet, d'en définir la sensibilité, la priorité, et de faire la réelle liste des choses pour lesquelles on souhaite être prévenu ou lancer une action de compensation. Cette expérience était réellement bénéfique et m'a beaucoup apporté dans mon appréciation de la maintenance d'un système d'informations.
