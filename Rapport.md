@@ -181,9 +181,15 @@ Dans Grafana, les dashboards mettent en relation des données de différentes _D
 
 ### Exemples de dashboards <a name="4-a"></a>
 
+#### Dashboard système
+
 ![Dashboard système](diapo/img/explosion.png "Dashboard système")
 
+#### Dashboard PostgreSQL
+
 ![Dashboard PostgreSQL](diapo/img/postgres.png "Dashboard PostgreSQL")
+
+#### Dashboard NGINX
 
 ![Dashboard NGINX](diapo/img/nginx.png "Dashboard NGINX")
 
